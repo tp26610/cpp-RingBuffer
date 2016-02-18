@@ -38,6 +38,8 @@ template <class T>
 int RingBuffer<T>::read(T *out, int length) {
 	int readCount;
 	for(readCount = 0; readCount < length; readCount++) {
+		if(isEmpty())
+			break;
 		out[readCount] = mBuffer[mReadIndex];
 		mReadIndex = getNextIndex(mReadIndex);
 	}

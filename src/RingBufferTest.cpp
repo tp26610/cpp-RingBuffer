@@ -92,3 +92,28 @@ test(overWrite) {
 		ASSERT_EQ(i, readBuffer[i]) << "assert elements wrong. i=" << i;
 	}
 }
+
+test(overRead) {
+	const int bufferLength = 10;
+	RingBuffer<short> buffer(bufferLength);
+
+	const int writeLength = 5;
+	short writeBuffer[writeLength];
+	for(int i = 0; i < writeLength; i++) {
+		writeBuffer[i] = i;
+	}
+	int writeCount = buffer.write(writeBuffer, writeLength);
+
+	ASSERT_EQ(writeLength, writeCount);
+
+	const int readLength = 10;
+	short readBuffer[readLength] = {};
+	int readCount = buffer.read(readBuffer, readLength);
+
+	ASSERT_EQ(5, readCount);
+
+	// assert elements in buffer.
+	for(int i = 0; i < writeLength; i++) {
+		ASSERT_EQ(i, readBuffer[i]) << "assert elements wrong. i=" << i;
+	}
+}
