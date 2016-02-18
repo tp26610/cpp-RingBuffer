@@ -83,4 +83,12 @@ test(overWrite) {
 	int writeCount = buffer.write(writeBuffer, writeLength);
 
 	ASSERT_EQ(bufferLength, writeCount) << "bufferLength=" << bufferLength << " writeCount=" << writeCount;
+	ASSERT_EQ(bufferLength, buffer.getDataLength());
+
+	// assert elements in buffer.
+	short readBuffer[bufferLength] = {};
+	buffer.read(readBuffer, bufferLength);
+	for(int i = 0; i < buffer.getDataLength(); i++) {
+		ASSERT_EQ(i, readBuffer[i]) << "assert elements wrong. i=" << i;
+	}
 }
