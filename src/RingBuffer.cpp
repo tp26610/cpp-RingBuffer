@@ -29,7 +29,7 @@ int RingBuffer<T>::write(T *in, int length) {
 		if(isFull())
 			break;
 		mBuffer[mWriteIndex] = in[writeCount];
-		mWriteIndex = getNextIndex(mWriteIndex);
+		mWriteIndex = nextIndex(mWriteIndex);
 	}
 	return writeCount;
 }
@@ -41,13 +41,13 @@ int RingBuffer<T>::read(T *out, int length) {
 		if(isEmpty())
 			break;
 		out[readCount] = mBuffer[mReadIndex];
-		mReadIndex = getNextIndex(mReadIndex);
+		mReadIndex = nextIndex(mReadIndex);
 	}
 	return readCount;
 }
 
 template <class T>
-int RingBuffer<T>::getNextIndex(int nowIndex) {
+int RingBuffer<T>::nextIndex(int nowIndex) {
 	nowIndex ++;
 	nowIndex %= mBufferLength;
 	return nowIndex;
@@ -55,7 +55,7 @@ int RingBuffer<T>::getNextIndex(int nowIndex) {
 
 template <class T>
 bool RingBuffer<T>::isFull() {
-	int nextWriteIndex = getNextIndex(mWriteIndex);
+	int nextWriteIndex = nextIndex(mWriteIndex);
 	return nextWriteIndex == mReadIndex;
 }
 

@@ -20,7 +20,7 @@ private:
 	int mReadIndex;
 	int mWriteIndex;
 
-	int getNextIndex(int nowIndex);
+	int nextIndex(int nowIndex);
 public:
 	RingBuffer(int length);
 	virtual ~RingBuffer();
