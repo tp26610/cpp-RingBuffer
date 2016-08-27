@@ -4,17 +4,14 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/RingBuffer.cpp \
 ../src/RingBufferTest.cpp \
 ../src/main.cpp 
 
 OBJS += \
-./src/RingBuffer.o \
 ./src/RingBufferTest.o \
 ./src/main.o 
 
 CPP_DEPS += \
-./src/RingBuffer.d \
 ./src/RingBufferTest.d \
 ./src/main.d 
 
