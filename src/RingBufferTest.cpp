@@ -1,5 +1,3 @@
-#
-
 #include <gtest/gtest.h>
 
 #define CLASS_NAME RingBuffer
